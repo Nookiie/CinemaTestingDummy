@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Cucumber-JVM Html Reports - Error Page</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="blue/css/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="blue/css/skin/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="blue/css/960.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="blue/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="blue/css/text.css" type="text/css" media="screen" />
+<link rel="shortcut icon" href="blue/favicon.ico" />
+<style>
+.error-message {
+    color:red;
+    font-weight: bold;
+    padding: 10px;
+    background-color: lightpink;
+}
+</style>
+
+</head>
+<body id="top">
+	<div id="fullwidth_header">
+		<div class="container_12">
+			<h1 class="grid_4 logo"><a href="feature-overview.html" class='ie6fix'>Cucumber</a></h1>
+			<div class="grid_6" id="nav">
+				<ul>
+                                            <li><a href="/job/Damian/1">Back To Jenkins</a></li>
+                    				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="fullwidth_gradient">
+		<div class="container_12">
+			<div class="grid_9 heading">
+				<h2 id="overview-title">Oops Something went wrong with Damian build: 1</h2>
+				<span class="subhead">The error message (if any) is below:</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="container_12">
+		<div class="grid_12">
+
+	<br/>
+
+	<div id="error-message" class="error-message"><pre>java.io.FileNotFoundException: attachments.json (The system cannot find the file specified)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at net.masterthought.cucumber.ReportParser.parseJsonResults(ReportParser.java:25)
+	at net.masterthought.cucumber.ReportBuilder.generateReports(ReportBuilder.java:142)
+	at HelloCucumber.main(HelloCucumber.java:35)
+</pre></div>
+        <br/>
+        <span class="subhead">Trying to generate report from following files. Make sure they are valid cucumber report files:</span>
+                            <br>attachments.json
+                    <br/><br/>
+	</div>
+
+
+<div class="container_12">
+    <div class="grid_12 hr"></div>
+    <div class="grid_12">
+        <p style="text-align:center">
+            <a href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+            <a href="https://github.com/damianszczepanik/cucumber-reporting">Cucumber reports</a>
+            <br>build: 24-01-2020 13:21:57</p>
+    </div>
+</div>
+
+</body>
+</html>
