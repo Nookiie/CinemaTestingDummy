@@ -9,9 +9,9 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.junit.Cucumber;
 import uni.fmi.cinemacity.common.GlobalConstants;
-import uni.fmi.login.ui.Homepage;
-import uni.fmi.login.ui.LoginForm;
-import uni.fmi.login.ui.RegisterForm;
+import uni.fmi.ui.Homepage;
+import uni.fmi.ui.LoginForm;
+import uni.fmi.ui.RegisterForm;
 
 @CucumberOptions(features = "Features/Register.feature")
 public class RegisterSteps {

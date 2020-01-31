@@ -10,6 +10,7 @@ public class Reservation extends BaseEntity {
 	private DateTime startDate;
 	private DateTime expireDate;
 	public Set<User> users;
+	private int chosenSeats;
 
 	public Reservation() {
 		
@@ -17,6 +18,12 @@ public class Reservation extends BaseEntity {
 	public Reservation(User user, Projection projection) {
 		this.user = user;
 		this.projection = projection;
+	}
+	
+	public Reservation(Projection projection) {
+		this.projection = projection;
+		this.startDate = DateTime.now();
+		this.expireDate = projection.getStartTime().withDurationAdded(-1, 1);
 	}
 
 	public User getUser() {
@@ -57,6 +64,14 @@ public class Reservation extends BaseEntity {
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+	
+	public int getChosenSeats() {
+		return chosenSeats;
+	}
+	
+	public void setChosenSeats(int chosenSeats) {
+		this.chosenSeats = chosenSeats;
 	}
 
 }

@@ -12,9 +12,9 @@ public class GlobalConstants {
 	
 	// Seat Reservation Result Strings
 	private static final String RESERVATION_SUCCESS_STRING = "Reservation Successful!";
-	private static final String RESERVATION_FAILED_STRING = "Reservation Failed!";
-	private static final String RESERVATION_FAILED_NO_VACANT_SEATS_STRING = RESERVATION_FAILED_STRING + " There are no vacant seats!";
-	private static final String RESERVATION_FAILED_PROJECTION_CANCELLED_STRING = RESERVATION_FAILED_STRING + "  The projection has been cancelled!";
+	private static final String RESERVATION_FAILED_STRING = "Reservation could not be made!"; 
+	private static final String RESERVATION_FAILED_NO_VACANT_SEATS_STRING = RESERVATION_FAILED_STRING + " No vacant seats!";
+	private static final String RESERVATION_FAILED_PROJECTION_LATE_STRING = RESERVATION_FAILED_STRING + " Too late!";
 	
 	// Schedule CRUD Result Strings
 	private static final String MOVIE_ADD_SUCCESSFUL_STRING = "Movie Successfully Added";
@@ -79,8 +79,8 @@ public class GlobalConstants {
 		return RESERVATION_FAILED_NO_VACANT_SEATS_STRING;
 	}
 
-	public static String getReservationFailedProjectionCancelledString() {
-		return RESERVATION_FAILED_PROJECTION_CANCELLED_STRING;
+	public static String getReservationFailedProjectionLateString() {
+		return RESERVATION_FAILED_PROJECTION_LATE_STRING;
 	}
 
 	public static String getMovieAddSuccessfulString() {

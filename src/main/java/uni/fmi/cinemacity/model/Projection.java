@@ -4,6 +4,8 @@ import java.util.*;
 
 import org.joda.time.DateTime;
 
+import uni.fmi.cinemacity.common.GlobalConstants;
+
 public class Projection extends BaseEntity {
 
 	/**
@@ -12,30 +14,22 @@ public class Projection extends BaseEntity {
 	public Projection() {
 
 	}
-
-	/**
-	 * 
-	 */
+	
+	public Projection(String name, Movie movie, DateTime startTime, DateTime endTime) {
+		this.name = name;
+		this.movie = movie;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.seats = GlobalConstants.getDefaultMaxSeats();
+		this.blockedSeats = 0;
+	}
+	
 	private String name;
-
-	/**
-	 * 
-	 */
 	private Movie movie;
-
-	/**
-	 * 
-	 */
 	private DateTime startTime;
-
-	/**
-	 * 
-	 */
 	private DateTime endTime;
-
-	/**
-	 * 
-	 */
+	private int seats;
+	private int blockedSeats;
 	public Set<Reservation> reservations;
 
 	public String getName() {
@@ -77,5 +71,20 @@ public class Projection extends BaseEntity {
 	public void setReservations(Set<Reservation> reservations) {
 		this.reservations = reservations;
 	}
-
+	
+	public int getSeats() {
+		return seats;
+	}
+	
+	public int getBlockedSeats() {
+		return blockedSeats;
+	}
+	
+	public void setBlockedSeats(int blockedSeats) {
+		this.blockedSeats = blockedSeats;
+	}
+	
+	public void incrementBlockedSeats(int amount) {
+		this.blockedSeats += amount;
+	}
 }

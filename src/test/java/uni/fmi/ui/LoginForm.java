@@ -1,33 +1,39 @@
-package uni.fmi.login.ui;
+package uni.fmi.ui;
 
 import uni.fmi.cinemacity.common.GlobalConstants;
 import uni.fmi.cinemacity.common.UserService;
 
-public class RegisterForm {
+public class LoginForm {
 	private UserService userService = new UserService();
 	
 	private String username, password, message;
-	public RegisterForm() {
-		
-	}
-	
+
 	public void addUsername(String username) {
 		this.username = username;
 	}
 	
 	public void addPassword(String password) {
-		this.password  = password;
+		this.password = password;
 	}
-	
-	public void clickRegisterButton() {
-		if(userService.register(username, password)) {
-				message = GlobalConstants.getRegisterSuccessString();	
+
+	public void clickLoginButton() {
+		if(userService.login(username, password)) {
+			message = GlobalConstants.getLoginSuccessString();
 		}
 		else {
-			message = GlobalConstants.getRegisterFailString() + userService.getErrorMessage();
+			message = GlobalConstants.getLoginFailString();
 		}
 	}
 	
+	public boolean isLoggedIn() {
+		if(userService.login(username, password)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	public String getMessage() {
 		return message;
 	}

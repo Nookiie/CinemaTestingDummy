@@ -14,7 +14,7 @@ public class ReservationRepository {
 		
 	}
 
-	public ArrayList<Reservation> getSchedules(){
+	public ArrayList<Reservation> getReservations(){
 		return reservations;
 	}
 	
