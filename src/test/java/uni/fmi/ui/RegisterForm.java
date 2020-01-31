@@ -6,7 +6,9 @@ import uni.fmi.cinemacity.common.UserService;
 public class RegisterForm {
 	private UserService userService = new UserService();
 	
-	private String username, password, message;
+	private String username;
+	private String password;
+	private String message;
 	public RegisterForm() {
 		
 	}

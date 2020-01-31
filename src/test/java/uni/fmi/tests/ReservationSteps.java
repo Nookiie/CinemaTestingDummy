@@ -2,6 +2,8 @@ package uni.fmi.tests;
 
 import static 	org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.joda.time.DateTime;
 
 import cucumber.api.CucumberOptions;
@@ -27,6 +29,7 @@ public class ReservationSteps {
 	private ReservationForm reservationForm;
 	private ReservationCheckoutForm reservationCheckoutForm;
 	private Projection projection;
+	private ArrayList<Integer> exampleSeats = new ArrayList<Integer>();
 	private String message = GlobalConstants.getReservationSuccessString();
 	
 	@Given("^Потребителят отваря началната стравица$")
@@ -63,7 +66,10 @@ public class ReservationSteps {
 
 	@When("^кликне на местата, които ще резервира$")
 	public void кликне_на_местата_които_ще_резервира() throws Throwable {
-	    reservationForm.chooseSeatsForProjection(2);
+		exampleSeats.add(12);
+		exampleSeats.add(13);
+		
+	    reservationForm.chooseSeatsForProjection(exampleSeats);
 	}
 
 	@When("^кликне на бутона за плащане на резервацията$")

@@ -11,14 +11,14 @@ public class Schedule extends BaseEntity {
 	public Schedule() {
 		
 	}
-	private List<Projection> projections; 
+	private ArrayList<Projection> projections; 
 	private DateTime date;
 
-	public List<Projection> getProjections() {
+	public ArrayList<Projection> getProjections() {
 		return projections;
 	}
 
-	public void setProjection(List<Projection> projections) {
+	public void setProjection(ArrayList<Projection> projections) {
 		this.projections = projections;
 	}
 

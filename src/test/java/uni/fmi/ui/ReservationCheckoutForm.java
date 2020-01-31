@@ -1,11 +1,14 @@
 package uni.fmi.ui;
 
+import uni.fmi.cinemacity.model.Reservation;
+
 public class ReservationCheckoutForm {
 	private String ccNumber;
 	private String ccDate;
 	private String ccSecret;
 	private String name;
 	private boolean isCheckoutValid = false;
+	private String errorMessage;
 	
 	public void addName(String name) {
 		this.name = name;
@@ -24,13 +27,25 @@ public class ReservationCheckoutForm {
 	}
 
 	public void clickCompleteTransactionButton() {
-		
+		if(checkCC()) {
+			sendCheckoutComplete();
+		}
 	}
 
 	public boolean checkCC() {
+		// We don't have any advanced API CC DB like Paypal or Nexmo so this will have to do for now
 		
-		isCheckoutValid = true;
-		return true;
+		boolean isCCNumberValid = ((ccNumber != null) && (ccNumber != ""));
+		boolean isCCDateValid = ((ccDate != null) && (ccDate != "")) ;
+		boolean isCCSecretValid = ((ccSecret != null) && (ccSecret != ""));
+		boolean isNameValid = (name != null) && (name != "");
+		
+		if(isCCNumberValid && isCCDateValid && isCCSecretValid && isNameValid) {
+			isCheckoutValid = true;
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public boolean getCheckoutComplete() {
@@ -51,4 +66,13 @@ public class ReservationCheckoutForm {
 			return false;
 		}
 	}
+	
+	public void setErrorMessage(String message) {
+		this.errorMessage =message; 
+	}
+	
+	public String getErrorMessage() {
+		return errorMessage;
+	}
 }
+

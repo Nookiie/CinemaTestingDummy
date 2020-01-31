@@ -14,7 +14,7 @@ public class ReservationService {
 	
 	public void reserve(Reservation reservation) {
 		if(reservation.getProjection().getSeats() <= GlobalConstants.getDefaultMaxSeats()) {
-			reservation.getProjection().incrementBlockedSeats(reservation.getChosenSeats());
+			reservation.getProjection().incrementBlockedSeats(reservation.getChosenSeats().size());
 			reservationRepo.addReservation(reservation);
 		}
 		else {

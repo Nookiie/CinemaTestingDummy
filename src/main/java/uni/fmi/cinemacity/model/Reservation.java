@@ -5,22 +5,22 @@ import java.util.*;
 import org.joda.time.DateTime;
 
 public class Reservation extends BaseEntity {
-	private User user;
+	private User user;	
 	private Projection projection;
 	private DateTime startDate;
 	private DateTime expireDate;
-	public Set<User> users;
-	private int chosenSeats;
+	private String name;
+	private ArrayList<Integer> seats;
 
 	public Reservation() {
 		
 	}
-	public Reservation(User user, Projection projection) {
+	public Reservation(User user, Projection projection, ArrayList<Integer> seats, ArrayList<Integer> rows) {
 		this.user = user;
 		this.projection = projection;
 	}
 	
-	public Reservation(Projection projection) {
+	public Reservation(Projection projection, String name, ArrayList<Integer> seats, ArrayList<Integer> rows) {
 		this.projection = projection;
 		this.startDate = DateTime.now();
 		this.expireDate = projection.getStartTime().withDurationAdded(-1, 1);
@@ -58,20 +58,12 @@ public class Reservation extends BaseEntity {
 		this.expireDate = expireDate;
 	}
 
-	public Set<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
+	public ArrayList<Integer> getChosenSeats() {
+		return seats;
 	}
 	
-	public int getChosenSeats() {
-		return chosenSeats;
-	}
-	
-	public void setChosenSeats(int chosenSeats) {
-		this.chosenSeats = chosenSeats;
+	public void setChosenSeats(ArrayList<Integer> seats) {
+		this.seats = seats;
 	}
 
 }

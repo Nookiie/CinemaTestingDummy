@@ -15,6 +15,7 @@ public class GlobalConstants {
 	private static final String RESERVATION_FAILED_STRING = "Reservation could not be made!"; 
 	private static final String RESERVATION_FAILED_NO_VACANT_SEATS_STRING = RESERVATION_FAILED_STRING + " No vacant seats!";
 	private static final String RESERVATION_FAILED_PROJECTION_LATE_STRING = RESERVATION_FAILED_STRING + " Too late!";
+	private static final String RESERVATION_FAILED_CHECKOUT_EMPTY_STRING = RESERVATION_FAILED_STRING + " Please fill in your Payment Info!";
 	
 	// Schedule CRUD Result Strings
 	private static final String MOVIE_ADD_SUCCESSFUL_STRING = "Movie Successfully Added";
@@ -101,5 +102,17 @@ public class GlobalConstants {
 
 	public static int getDefaultMaxSeats() {
 		return DEFAULT_MAX_SEATS;
+	}
+
+	public static String getRegisteSuccess() {
+		return REGISTE_SUCCESS;
+	}
+
+	public static String getRegisterFail() {
+		return REGISTER_FAIL;
+	}
+
+	public static String getReservationFailedCheckoutEmptyString() {
+		return RESERVATION_FAILED_CHECKOUT_EMPTY_STRING;
 	}
 }
