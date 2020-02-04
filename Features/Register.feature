@@ -17,7 +17,7 @@ Feature: Register feature
     When въведе празно потребителско име на акаунт
     And въведе валидна парола на акаунт
     And натисне бутона за регистрация
-    Then вижда съобщение с текст "Registration Failed! Username and / or password does not match the criteria"
+    Then вижда съобщение с текст "Registration Failed! Username is blank"
 
    Scenario: Създаване на акаунт с празна парола
     Given Потребителят отваря началната страница с готовност за създаване на акаунт
@@ -26,7 +26,7 @@ Feature: Register feature
     When въведе валидно потребителско име на акаунт
     And въведе празна парола на акаунт
     And натисне бутона за регистрация
-    Then вижда съобщение с текст "Registration Failed! Username and / or password does not match the criteria"
+    Then вижда съобщение с текст "Registration Failed! Password is blank"
 
     #Scenario: Създаване на акаунт с празно име и парола
     
@@ -37,7 +37,7 @@ Feature: Register feature
     When въведе потребителско име с повече от 50 символа на акаунт
     And въведе валидна парола на акаунт
     And натисне бутона за регистрация
-    Then вижда съобщение с текст "Registration Failed! Username and / or password does not match the criteria"
+    Then вижда съобщение с текст "Registration Failed! Username is too long"
     
    Scenario: Създаване на акаунт с парола по-голяма от 32 символа
     Given Потребителят отваря началната страница с готовност за създаване на акаунт
@@ -46,7 +46,7 @@ Feature: Register feature
     When въведе валидно потребителско име на акаунт
     And въведе парола по-голяма от 32 символа на акаунт
     And натисне бутона за регистрация
-    Then вижда съобщение с текст "Registration Failed! Username and / or password does not match the criteria"
+    Then вижда съобщение с текст "Registration Failed! Password is too long"
     
    Scenario: Създаване на акаунт с име по-малко от 3 символа
     Given Потребителят отваря началната страница с готовност за създаване на акаунт
@@ -55,7 +55,7 @@ Feature: Register feature
     When въведе потребителско име с по-малко от 3 символа на акаунт
     And въведе валидна парола на акаунт
     And натисне бутона за регистрация
-    Then вижда съобщение с текст "Registration Failed! Username and / or password does not match the criteria"
+    Then вижда съобщение с текст "Registration Failed! Username is too short"
    
    Scenario: Създаване на акаунт с парола по-малка от 8 символа
     Given Потребителят отваря началната страница с готовност за създаване на акаунт
@@ -64,5 +64,5 @@ Feature: Register feature
     When въведе валидно потребителско име на акаунт
     And въведе парола по-малка от 8 символа на акаунт
     And натисне бутона за регистрация
-    Then вижда съобщение с текст "Registration Failed! Username and / or password does not match the criteria"
+    Then вижда съобщение с текст "Registration Failed! Password is too short"
    

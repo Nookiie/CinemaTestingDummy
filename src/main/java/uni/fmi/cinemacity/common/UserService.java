@@ -15,24 +15,42 @@ public class UserService {
 	}
 	
 	public boolean register(String username,  String password) {
-		if(username.length() > GlobalConstants.getDefaultUsernameMaxLength() 
-				|| username.length() < GlobalConstants.getDefaultUsernameMinLength()
-				|| password.length() < GlobalConstants.getDefaultPasswordMinLength()
-				|| password.length() > GlobalConstants.getDefaultPasswordMaxLength()) {
-			errorMessage = " Username and / or password does not match the criteria";
-			return false;
-		}
+			if(username == null || username.equals("")) {
+				errorMessage = " Username is blank";
+				return false;
+			}
+			
+			if(password == null || password.equals("")) {
+				errorMessage = " Password is blank";
+				return false;
+			}
 		
-		if(username.isBlank() || password.isBlank()) {
-			errorMessage = " Username or password is blank";
-			return false;
-		}
+			if(username.length() > GlobalConstants.getDefaultUsernameMaxLength()) {
+					errorMessage = " Username is too long";
+					return false;
+			}
+		
+			if(username.length() < GlobalConstants.getDefaultUsernameMinLength()) {
+				errorMessage = " Username is too short";
+				return false;
+			}
+			
+			if(password.length() > GlobalConstants.getDefaultPasswordMaxLength()) {
+				errorMessage = " Password is too long";
+				return false;
+			}
+			
+			if(password.length() < GlobalConstants.getDefaultPasswordMinLength()) {
+				errorMessage = " Password is too short";
+				return false;
+			}
+	
 		
 		try {	
 				userRepo.addUser(username, password);	
 			}
 		catch(Exception e){
-			errorMessage = "Database operation failed";
+			errorMessage = " Database operation failed";
 			return false;
 		}
 		return true;
