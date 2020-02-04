@@ -164,4 +164,13 @@ public class ReservationSteps {
 		
 		message = reservationForm.getErrorMessage();
 	}
+	
+	@When("^не избира място за резервация$")
+	public void не_избира_място_за_резервация() throws Throwable {
+	    reservationForm.chooseProjectionForReservation(projection);
+	    reservationForm.chooseSeatsForProjection(exampleSeats);
+	    
+	    message = reservationForm.getErrorMessage();
+	}
+
 }

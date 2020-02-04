@@ -13,16 +13,20 @@ public class ReservationService {
 	}
 	
 	public boolean checkReservationSeats(Reservation reservation) {
+		if(reservation.getChosenSeats().isEmpty()) {
+			errorMessage = GlobalConstants.getReservationFailedString() + " No selected seats!";
+		}
+		
 		if(reservation.getProjection().getSeats() - 
 				(reservation.getProjection().getBlockedSeatsCount() + reservation.getChosenSeats().size())  <= 0) {
-			errorMessage = "Reservation could not be made! No vacant seats!";
+			errorMessage = GlobalConstants.getReservationFailedString() + " No vacant seats!";
 			return false;
 		}
 		
 		for(int seat : reservation.getProjection().getBlockedSeats()) {
 			for(int chosenSeat : reservation.getChosenSeats()) {
 				if(seat == chosenSeat) {
-					errorMessage = "Reservation could not be made! Seat is reserved!";
+					errorMessage = GlobalConstants.getReservationFailedString() + " Seat is reserved!";
 					return false;
 				}
 			}
