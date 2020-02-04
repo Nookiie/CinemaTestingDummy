@@ -6,19 +6,35 @@ import uni.fmi.cinemacity.repository.ReservationRepository;
 
 public class ReservationService {
 	private ReservationRepository reservationRepo = new ReservationRepository();
-	private String errorMessage;
+	private String errorMessage = GlobalConstants.getReservationSuccessString();
 	
 	public ReservationService() {
+		
+	}
 	
+	public boolean checkReservationSeats(Reservation reservation) {
+		if(reservation.getProjection().getSeats() - 
+				(reservation.getProjection().getBlockedSeatsCount() + reservation.getChosenSeats().size())  <= 0) {
+			errorMessage = "Reservation could not be made! No vacant seats!";
+			return false;
+		}
+		
+		for(int seat : reservation.getProjection().getBlockedSeats()) {
+			for(int chosenSeat : reservation.getChosenSeats()) {
+				if(seat == chosenSeat) {
+					errorMessage = "Reservation could not be made! Seat is reserved!";
+					return false;
+				}
+			}
+		}
+		
+		return true;
 	}
 	
 	public void reserve(Reservation reservation) {
-		if(reservation.getProjection().getSeats() <= GlobalConstants.getDefaultMaxSeats()) {
-			reservation.getProjection().incrementBlockedSeats(reservation.getChosenSeats().size());
-			reservationRepo.addReservation(reservation);
-		}
-		else {
-			errorMessage = " No vacant seats!";
+		if(checkReservationSeats(reservation)) {
+			reservation.getProjection().incrementBlockedSeats(reservation.getChosenSeats());
+			reservationRepo.addReservation(reservation);	
 		}
 	}
 	

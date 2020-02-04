@@ -1,11 +1,12 @@
 package uni.fmi.cinemacity.common;
 
 import uni.fmi.cinemacity.model.Projection;
+import uni.fmi.cinemacity.model.Reservation;
 import uni.fmi.cinemacity.repository.ProjectionRepository;
 
 public class ProjectionService {
 	private ProjectionRepository projectionRepo = new ProjectionRepository();
-	private String errorMessage;
+	private String errorMessage = GlobalConstants.getReservationSuccessString();
 	
 	public ProjectionService() {
 		projectionRepo.addProjection(new Projection());
@@ -21,10 +22,21 @@ public class ProjectionService {
 	public void existsProjection(Projection projection) {
 		projectionRepo.existsProjectionByName(projection.getName());
 	}
-
-	public boolean checkReservationAccessbility(Projection projection) {
+	
+	public boolean checkReservationSeats(Reservation reservation) {
+		for(int seat : reservation.getProjection().getBlockedSeats()) {
+			for(int chosenSeat : reservation.getChosenSeats()) {
+				if(seat == chosenSeat) {
+					return false;
+				}
+			}
+		}
 		
-			if(projection.getSeats() <= projection.getBlockedSeats()) {
+		return true;
+	}
+	
+	public boolean checkReservationAccessbility(Projection projection) {
+			if(projection.getSeats() <= projection.getBlockedSeats().size()) {
 				errorMessage = GlobalConstants.getReservationFailedNoVacantSeatsString();
 				return false;
 			}

@@ -21,7 +21,9 @@ public class Projection extends BaseEntity {
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.seats = GlobalConstants.getDefaultMaxSeats();
-		this.blockedSeats = 0;
+		
+		blockedSeats.add(25);
+		blockedSeats.add(26);
 	}
 	
 	private String name;
@@ -29,7 +31,7 @@ public class Projection extends BaseEntity {
 	private DateTime startTime;
 	private DateTime endTime;
 	private int seats;
-	private int blockedSeats;
+	private ArrayList<Integer> blockedSeats = new ArrayList<Integer>();
 	public Set<Reservation> reservations;
 
 	public String getName() {
@@ -75,16 +77,22 @@ public class Projection extends BaseEntity {
 	public int getSeats() {
 		return seats;
 	}
-	
-	public int getBlockedSeats() {
+
+	public ArrayList<Integer> getBlockedSeats(){
 		return blockedSeats;
 	}
 	
-	public void setBlockedSeats(int blockedSeats) {
-		this.blockedSeats = blockedSeats;
+	public int getBlockedSeatsCount() {
+		return blockedSeats.size();
 	}
 	
-	public void incrementBlockedSeats(int amount) {
-		this.blockedSeats += amount;
+	public void setBlockedSeats(ArrayList<Integer> chosenSeats) {
+		this.blockedSeats = chosenSeats;
+	}
+	
+	public void incrementBlockedSeats(ArrayList<Integer> chosenSeats) {
+		for	(int seat : chosenSeats) {
+			this.blockedSeats.add(seat);
+		}
 	}
 }

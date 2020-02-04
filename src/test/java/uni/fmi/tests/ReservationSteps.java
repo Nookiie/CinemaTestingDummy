@@ -30,6 +30,7 @@ public class ReservationSteps {
 	private ReservationCheckoutForm reservationCheckoutForm;
 	private Projection projection;
 	private ArrayList<Integer> exampleSeats = new ArrayList<Integer>();
+	private ArrayList<Integer> filledSeats = new ArrayList<Integer>();
 	private String message = GlobalConstants.getReservationSuccessString();
 	
 	@Given("^Потребителят отваря началната стравица$")
@@ -66,9 +67,11 @@ public class ReservationSteps {
 
 	@When("^кликне на местата, които ще резервира$")
 	public void кликне_на_местата_които_ще_резервира() throws Throwable {
-		exampleSeats.add(12);
+		// First Number => row,  second number => seat
+		exampleSeats.add(12); 
 		exampleSeats.add(13);
 		
+		reservationForm.chooseProjectionForReservation(projection);
 	    reservationForm.chooseSeatsForProjection(exampleSeats);
 	}
 
@@ -140,7 +143,25 @@ public class ReservationSteps {
 	@Given("^избира си прожекция от графика, която няма свободни места$")
 	public void избира_си_прожекция_от_графика_която_няма_свободни_места() throws Throwable {
 		 projection = new Projection("FirstProjection", new Movie("Bad Guys 2"), DateTime.now(), DateTime.parse("2019-10-13"));
-		 projection.setBlockedSeats(GlobalConstants.getDefaultMaxSeats());
+		 
+		 // Dummy filledSeats array added to the Projection class to simulate a filled seats projection
+		 for(int i = 0; i<92;i++) {
+			 filledSeats.add(i);
+		 }
+		 
+		 projection.setBlockedSeats(filledSeats);
 		 projectionForm.selectProjection(projection);
+	}
+	
+	@When("^кликне на местата, които ще резервира, които вече са заети$")
+	public void кликне_на_местата_които_ще_резервира_които_вече_са_заети() throws Throwable {
+		// First Number => row,  second number => seat
+		exampleSeats.add(25); 
+		exampleSeats.add(26);
+		
+		reservationForm.chooseProjectionForReservation(projection);		
+		reservationForm.chooseSeatsForProjection(exampleSeats);
+		
+		message = reservationForm.getErrorMessage();
 	}
 }

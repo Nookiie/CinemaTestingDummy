@@ -15,12 +15,12 @@ public class Reservation extends BaseEntity {
 	public Reservation() {
 		
 	}
-	public Reservation(User user, Projection projection, ArrayList<Integer> seats, ArrayList<Integer> rows) {
+	public Reservation(User user, Projection projection, ArrayList<Integer> seats) {
 		this.user = user;
 		this.projection = projection;
 	}
 	
-	public Reservation(Projection projection, String name, ArrayList<Integer> seats, ArrayList<Integer> rows) {
+	public Reservation(Projection projection, String name, ArrayList<Integer> seats) {
 		this.projection = projection;
 		this.startDate = DateTime.now();
 		this.expireDate = projection.getStartTime().withDurationAdded(-1, 1);
@@ -64,6 +64,13 @@ public class Reservation extends BaseEntity {
 	
 	public void setChosenSeats(ArrayList<Integer> seats) {
 		this.seats = seats;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

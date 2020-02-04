@@ -17,6 +17,7 @@ public class ReservationForm {
 	
 	public void chooseSeatsForProjection(ArrayList<Integer> seats) {
 		reservation.setChosenSeats(seats);
+		reservationService.checkReservationSeats(reservation);
 	}
 	
 	public void chooseProjectionForReservation(Projection projection) {
@@ -39,5 +40,9 @@ public class ReservationForm {
 		else {
 			checkoutForm.setErrorMessage(GlobalConstants.getReservationFailedCheckoutEmptyString());
 		}
+	}
+
+	public String getErrorMessage() {
+		return reservationService.getErrorMessage();
 	}
 }
